@@ -59,7 +59,6 @@ signature_method(_Consumer={_, _, Method}) ->
   Method.
 
 sign(HttpMethod, URL, Params, Consumer, Token, TokenSecret) ->
-  error_logger:info_msg("signature:~n~p~n~p~n~p~n~p~n~p~n~p~n", [HttpMethod, URL, Params, Consumer, Token, TokenSecret]),  
   SignatureParams = signature_params(Consumer, Params, Token),
   Signature = signature(HttpMethod, URL, SignatureParams, Consumer, TokenSecret),
   [{"oauth_signature", Signature} | SignatureParams].
